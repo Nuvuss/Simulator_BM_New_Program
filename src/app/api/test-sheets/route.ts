@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server';
 import { google } from 'googleapis';
-import { sanitizePrivateKey } from '@/lib/googleSheets';
+import { sanitizePrivateKey, ensureSheetExists } from '@/lib/googleSheets';
 
 export async function GET() {
   const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL?.trim();
   const rawKey = process.env.GOOGLE_PRIVATE_KEY;
   const sheetId = process.env.GOOGLE_SHEET_ID?.trim();
-  const sheetName = process.env.GOOGLE_SHEET_NAME?.trim() || 'Result';
+  const sheetName = process.env.GOOGLE_SHEET_NAME?.trim() || 'Result New Program';
 
   const diagnostics = {
     hasEmail: !!email,
@@ -47,6 +47,9 @@ export async function GET() {
 
     const tabs = meta.data.sheets?.map((s) => s.properties?.title) || [];
 
+    // Pastikan tab sheetName ada
+    await ensureSheetExists(sheets, sheetId, sheetName);
+
     // Coba append baris diagnosa
     const appendRes = await sheets.spreadsheets.values.append({
       spreadsheetId: sheetId,
@@ -58,6 +61,8 @@ export async function GET() {
             'Uji Diagnosa Vercel',
             'system-test@vercel.app',
             `[${new Date().toLocaleTimeString('id-ID', { timeZone: 'Asia/Jakarta' })}] Sistem:\nTes koneksi dari Vercel berhasil.`,
+            '-',
+            '-',
             '-',
             '-',
           ],

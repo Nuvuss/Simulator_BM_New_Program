@@ -2,17 +2,17 @@ import { Lead } from '@/types';
 
 export const leads: Lead[] = [
   {
-    id: 'rina',
-    name: 'Rina',
+    id: 'aliya',
+    name: 'Aliya',
     age: 24,
-    profile: 'Career switcher, gym admin',
-    program: 'Digital Marketing',
-    source: 'inbound',
+    profile: 'Staff Marketing di perusahaan otomotif Jepang',
+    program: 'Applied AI Analytics & Automation RevoU x BINUS',
+    source: 'Application form',
     avatar: '👩',
     openingBM:
-      'Halo Kak Rina, aku dari tim admission RevoU. Makasih ya udah daftar program Digital Marketing. Boleh tau, apa yang bikin kamu tertarik belajar digital marketing?',
+      'Hi Kak Aliya, salam kenal 🙂 aku Admission Counselor RevoU. Aku lihat Kakak tertarik dengan program *Applied AI, Analytics & Automation – RevoU x BINUS* ya. Thank you yaa..\n\nProgram ini adalah kolaborasi industri & universitas, di mana RevoU bekerja sama dgn BINUS University. Kurikulum berbasis industri yg cocok utk bisa *AI & Automation tanpa harus bisa coding*\n\nKalo boleh share, sekarang lagi kerja sebagai apa atau mungkin baru lulus kuliah kah kak?',
     openingLead:
-      'Halo kak. Aku sekarang admin di gym, tapi sering disuruh bantu bikin konten IG gym juga. Pengen banget pindah kerja ke marketing, cuma bingung mulainya dari mana. Ini programnya berapa lama ya?',
+      'Halo kak. Aku sekarang kerja sebagai staff marketing di perusahaan otomotif Jepang. Pengen belajar AI soalnya kyknya penting skrg bisa AI. Ini programnya berapa lama ya?',
     questions: [
       {
         seq: 1,
@@ -22,12 +22,12 @@ export const leads: Lead[] = [
       {
         seq: 2,
         type: 'question' as const,
-        text: 'Nanti belajarnya praktek langsung atau teori aja? Aku pengen punya portofolio buat ngelamar kerja.',
+        text: 'Nanti belajarnya praktek langsung atau teori aja? Soalnya aku takut sulit pahamnya',
       },
       {
         seq: 3,
         type: 'question' as const,
-        text: 'Ada ga alumni RevoU yang dari non-marketing kayak aku terus berhasil pindah kerja?',
+        text: 'Ada contoh portofolio/tugasnya kyk gimana ga kak?',
       },
       {
         seq: 4,
@@ -41,68 +41,23 @@ export const leads: Lead[] = [
       },
     ],
     bookingRequest:
-      'Oke kak, makasih ya udah jelasin semuanya! Aku mau deh konsultasi lebih lanjut sama AC-nya. Kapan ya kak bisa jadwalnya?',
+      'Oke kak, makasih penjelasannya! Aku mau deh ngobrol lebih lanjut sama AC-nya. Kapan ya kak bisa jadwalnya?',
     bookingConfirm:
-      'Siap kak, aku catat ya! Nanti AC RevoU yang hubungi aku ya. Makasih banyak kak! 🙏',
+      'Siap kak, sudah aku catat ya! Nanti AC RevoU yang hubungi aku ya. Makasih banyak kak! 🙏',
     timeLimitSec: 900,
   },
   {
-    id: 'dimas',
-    name: 'Dimas',
-    age: 22,
-    profile: 'Fresh graduate, International Relations',
-    program: 'Data Analytics',
-    source: 'brochure',
-    avatar: '👨',
+    id: 'tomo',
+    name: 'Tomo',
+    age: 40,
+    profile: 'Kepala sekolah di sekolah swasta di Jakarta Selatan',
+    program: 'Data-Driven Decision Making for Leaders RevoU x ITB',
+    source: 'Brochure download',
+    avatar: '👨‍💼',
     openingBM:
-      'Halo Kak Dimas, aku dari tim RevoU. Kemarin kamu download brosur Data Analytics ya, udah sempat dicek belum?',
+      'Hi Pak Tomo, salam kenal 😊 aku Admission Counselor RevoU. Aku lihat Bpk tertarik dengan program *Data-Driven Decision Making for Leaders – RevoU x ITB*\n\nThank you yaa.. Program ini adalah kolaborasi industri & universitas, yaitu ITB. Program akan memberikan kurikulum berbasis industri yg cocok utk *memaksimalkan penggunaan AI utk decision making yg lebih tajam dalam tim.* 🧑‍💼\n\nKalau boleh tau, saat ini kerja di role sebagai apa dan di tim apa Pak?',
     openingLead:
-      'Udah kak sekilas. Aku baru lulus HI, ga ada background matematika atau coding sama sekali. Emang bisa ya ikut program ini?',
-    questions: [
-      {
-        seq: 1,
-        type: 'question' as const,
-        text: 'Belajarnya pakai tools apa aja kak? Excel, SQL gitu?',
-      },
-      {
-        seq: 2,
-        type: 'question' as const,
-        text: 'Programnya berapa lama kak? Aku sambil ngelamar kerja juga soalnya.',
-      },
-      {
-        seq: 3,
-        type: 'question' as const,
-        text: 'Setelah lulus dibantu cari kerja ga kak? Ada penyaluran kerja?',
-      },
-      {
-        seq: 4,
-        type: 'objection' as const,
-        text: 'Aku belum kerja kak, masih minta ortu. Harus izin dulu sama mereka.',
-      },
-      {
-        seq: 5,
-        type: 'objection' as const,
-        text: 'Temen aku bilang mending ambil sertifikasi Google aja, lebih murah. Bedanya apa kak?',
-      },
-    ],
-    bookingRequest:
-      'Oke kak, lumayan jelas sih. Aku mau coba daftar konsultasi dulu deh. Kapan bisa kak?',
-    bookingConfirm:
-      'Oke kak, ditunggu ya. Makasih banyak kak! 🙏',
-    timeLimitSec: 900,
-  },
-  {
-    id: 'shania',
-    name: 'Shania',
-    age: 32,
-    profile: 'Marketing manager, e-commerce',
-    program: 'Data-Driven Decision Making with ITB',
-    source: 'inbound',
-    avatar: '👩‍💼',
-    openingBM:
-      'Halo Kak Shania, aku dari tim admission RevoU. Makasih ya udah daftar program Data-Driven Decision Making with ITB. Boleh tau, lagi ada kebutuhan apa di kerjaan yang bikin kamu tertarik ikut program ini?',
-    openingLead:
-      'Halo. Saya marketing manager di e-commerce. Tim saya makin banyak pakai dashboard. Programnya cocok untuk level manager ga atau banyak level junior yg ikut?',
+      'Halo, saya kepala sekolah di sekolah swasta Jakarta Selatan. Ini programnya cocok gak buat saya?',
     questions: [
       {
         seq: 1,
@@ -112,12 +67,12 @@ export const leads: Lead[] = [
       {
         seq: 2,
         type: 'question' as const,
-        text: 'Kelasnya full online atau ada yang harus datang ke Bandung?',
+        text: 'Alumni-alumni sebelumnya ada yg seperti saya gak kak? Atau biasanya profilnya seperti apa yg ikut? Nanti saya tua sendiri lg kak',
       },
       {
         seq: 3,
         type: 'question' as const,
-        text: 'Materinya lebih ke teknis atau ke pengambilan keputusan? Saya ga mau jadi data analyst, tapi pengen bisa baca data dan arahin tim.',
+        text: 'Yg ngajar siapa aja kak?',
       },
       {
         seq: 4,
@@ -131,9 +86,99 @@ export const leads: Lead[] = [
       },
     ],
     bookingRequest:
-      'Baik kak, terima kasih informasinya. Saya mau jadwalkan konsultasi dengan AC dulu. Kapan bisa ya kak?',
+      'Baik Pak/Bu, penjelasannya cukup jelas. Kalau begitu saya jadwalkan konsultasi dengan AC terlebih dahulu. Kapan waktunya yang tersedia?',
     bookingConfirm:
-      'Baik kak, sudah saya catat. Ditunggu ya kak. Terima kasih 🙏',
+      'Baik, terima kasih. Nanti dihubungi oleh tim AC ya. Terima kasih banyak atas bantuannya 🙏',
+    timeLimitSec: 900,
+  },
+  {
+    id: 'burhan',
+    name: 'Burhan',
+    age: 32,
+    profile: 'Credit Analyst di perusahaan e-wallet.',
+    program: 'Applied Data Science with AI RevoU x ITB',
+    source: 'Application form',
+    avatar: '👨',
+    openingBM:
+      'Hai Kak Burhan! Salam kenal aku Admission Counselor untuk program *Applied Data Science with AI - RevoU × ITB* 🙌 Makasih banyak udh tertarik dgn programnya 😊\n\nSingkatnya, ini program advanced yg cocok utk analyst yg udh biasa report & explore data, dan skrg mau naik level: bangun *predictive model & AI-enabled data product 🎓\n\nSupaya aku bisa bantu konsultasi lebih tepat, boleh cerita dikit Kak: *saat ini role-nya apa, dan sehari-hari udh kerja dgn data seperti apa?* (misal SQL, dashboard, Python)',
+    openingLead:
+      'Sore kak, saya udh bisa SQL dan udh kerja sebagai analyst juga. Saat ini kerja sebagai Credit Analyst di perusahaan e-wallet. Ini programnya tuh gimana ya kak?',
+    questions: [
+      {
+        seq: 1,
+        type: 'question' as const,
+        text: 'Belajarnya pakai tools apa kak AI-nya?',
+      },
+      {
+        seq: 2,
+        type: 'question' as const,
+        text: 'Programnya berapa lama kak dan gimana jadwalnya? Aku sambil kerja juga soalnya.',
+      },
+      {
+        seq: 3,
+        type: 'question' as const,
+        text: 'Sertifikatnya nanti dari RevoU atau gimana?',
+      },
+      {
+        seq: 4,
+        type: 'objection' as const,
+        text: 'Aku masih level junior kerjanya kak, masih minta bantu finansial dr ortu. Harus izin dulu sama mereka.',
+      },
+      {
+        seq: 5,
+        type: 'objection' as const,
+        text: 'Temen aku bilang mending ambil sertifikasi online dari AWS aja, lebih murah. Bedanya apa kak?',
+      },
+    ],
+    bookingRequest:
+      'Oke kak mantap, jelas banget. Boleh deh aku atur sesi konsultasi bareng AC-nya dulu. Jadwalnya kapan aja ya kak?',
+    bookingConfirm:
+      'Oke kak, sudah dicatat. Ditunggu kontak dari tim AC ya. Thank you kak! 🙌',
+    timeLimitSec: 900,
+  },
+  {
+    id: 'ika',
+    name: 'Ika',
+    age: 30,
+    profile: 'Account Payable di kantor udh 5th, kantor bidang Retail',
+    program: 'AI-Enabled Strategic Finance RevoU x UI',
+    source: 'Brochure download',
+    avatar: '👩‍💼',
+    openingBM:
+      'Hai Kak Ika! Salam kenal, aku counselor RevoU utk program *AI-Enabled Strategic Finance - RevoU x Universitas Indonesia* 🙏 Makasih banyak yaa udh tertarik dgn programnya!\n\nIni program 13 minggu buat profesional finance & akuntansi yg mau naik ke peran lebih strategis, kayak Finance Manager, Head of FP&A, Financial Controller, sampai Head of Finance, dengan AI yg udah nyatu di cara kerjanya.\n\nBiar aku bisa bantu konsultasi yg pas, boleh tau dulu Kakak udh kerja di finance/accounting udh berapa lama kak? 😊',
+    openingLead:
+      'Ehiya halo kak, aku skrg kerja sebagai account payable. Kantorku bidangnya retail. Ini belajar AI aja atau gmn ya kak?',
+    questions: [
+      {
+        seq: 1,
+        type: 'question' as const,
+        text: 'Aku sambil kerja full time kak. Kadang klo closing sampe malem nih.. Ini jadwalnya gimana ya padet bgt ga?',
+      },
+      {
+        seq: 2,
+        type: 'question' as const,
+        text: 'Emang nanti AI-nya akan kyk gimana atau bikin apa ya kak?',
+      },
+      {
+        seq: 3,
+        type: 'question' as const,
+        text: 'Pengajarnya siapa aja kak?',
+      },
+      {
+        seq: 4,
+        type: 'objection' as const,
+        text: 'Jujur ya aku agak kaget lihat harganya di website. Ini aku pertimbangkan dulu ya kak',
+      },
+      {
+        seq: 5,
+        type: 'objection' as const,
+        text: 'Kalau aku ada hari di mana gabisa hadir di kelas, gmn ya kak?',
+      },
+    ],
+    bookingRequest:
+      'Oke deh kak, lumayan kebayang sekarang. Aku mau ikut sesi konsultasi sama AC-nya dulu. Kapan bisa dijadwalkan ya kak?',
+    bookingConfirm:
+      'Siap kak, aku tunggu ya. Makasih infonya kak! 😊',
     timeLimitSec: 900,
   },
 ];

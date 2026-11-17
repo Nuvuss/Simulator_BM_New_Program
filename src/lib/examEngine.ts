@@ -14,7 +14,7 @@ export function createInitialState(
   candidateName: string,
   candidateEmail: string
 ): ExamState {
-  // Pre-generate shuffled question orders for all 3 leads
+  // Pre-generate shuffled question orders for all leads
   const shuffledQuestionOrders = leads.map(() => shuffleQuestionOrder());
 
   return {
@@ -26,7 +26,7 @@ export function createInitialState(
     shuffledQuestionOrders,
     currentQuestionIndex: 0,
     phase: 'greeting',
-    sectionEndReasons: [null, null, null],
+    sectionEndReasons: leads.map(() => null),
     status: 'in-progress',
     lastLeadMessageTime: null,
   };

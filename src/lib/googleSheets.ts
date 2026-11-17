@@ -1,5 +1,6 @@
 import { google } from 'googleapis';
 import { ChatMessage } from '@/types';
+import { leads } from '@/data/leads';
 
 export interface SubmitPayload {
   messages: ChatMessage[];
@@ -10,9 +11,10 @@ export interface SubmitPayload {
 export const SHEET_HEADERS = [
   'Nama Kandidat',
   'Email Kandidat',
-  'Transkrip Sesi 1 (Rina)',
-  'Transkrip Sesi 2 (Dimas)',
-  'Transkrip Sesi 3 (Shania)',
+  'Transkrip Sesi 1 (Aliya)',
+  'Transkrip Sesi 2 (Tomo)',
+  'Transkrip Sesi 3 (Burhan)',
+  'Transkrip Sesi 4 (Ika)',
 ];
 
 function formatSessionTranscript(sessionMessages: ChatMessage[]): string {
@@ -45,23 +47,16 @@ export function formatCandidateRow(
   candidateName: string,
   candidateEmail: string
 ): string[] {
-  const session1 = messages.filter(
-    (m) => m.sectionIndex === 0 || m.leadName?.toLowerCase() === 'rina'
-  );
-  const session2 = messages.filter(
-    (m) => m.sectionIndex === 1 || m.leadName?.toLowerCase() === 'dimas'
-  );
-  const session3 = messages.filter(
-    (m) => m.sectionIndex === 2 || m.leadName?.toLowerCase() === 'shania'
-  );
+  const sessionRows = leads.map((lead, index) => {
+    const sessionMessages = messages.filter(
+      (m) =>
+        m.sectionIndex === index ||
+        m.leadName?.toLowerCase() === lead.name.toLowerCase()
+    );
+    return formatSessionTranscript(sessionMessages);
+  });
 
-  return [
-    candidateName,
-    candidateEmail,
-    formatSessionTranscript(session1),
-    formatSessionTranscript(session2),
-    formatSessionTranscript(session3),
-  ];
+  return [candidateName, candidateEmail, ...sessionRows];
 }
 
 export function sanitizePrivateKey(rawKey: string | undefined): string {
@@ -100,6 +95,34 @@ export function sanitizePrivateKey(rawKey: string | undefined): string {
   return key;
 }
 
+export async function ensureSheetExists(
+  sheets: any,
+  spreadsheetId: string,
+  sheetName: string
+): Promise<void> {
+  const meta = await sheets.spreadsheets.get({ spreadsheetId });
+  const sheetExists = meta.data.sheets?.some(
+    (s: any) => s.properties?.title === sheetName
+  );
+
+  if (!sheetExists) {
+    await sheets.spreadsheets.batchUpdate({
+      spreadsheetId,
+      requestBody: {
+        requests: [
+          {
+            addSheet: {
+              properties: {
+                title: sheetName,
+              },
+            },
+          },
+        ],
+      },
+    });
+  }
+}
+
 export async function appendToGoogleSheet(
   messages: ChatMessage[],
   candidateName: string,
@@ -109,7 +132,7 @@ export async function appendToGoogleSheet(
   const rawKey = process.env.GOOGLE_PRIVATE_KEY;
   const privateKey = sanitizePrivateKey(rawKey);
   const spreadsheetId = process.env.GOOGLE_SHEET_ID?.trim();
-  const sheetName = process.env.GOOGLE_SHEET_NAME?.trim() || 'Result';
+  const sheetName = process.env.GOOGLE_SHEET_NAME?.trim() || 'Result New Program';
 
   if (!serviceAccountEmail || !privateKey || !spreadsheetId) {
     throw new Error(
@@ -127,10 +150,13 @@ export async function appendToGoogleSheet(
 
   const sheets = google.sheets({ version: 'v4', auth });
 
-  // 1. Cek apakah baris 1 (Header) sudah ada
+  // 1. Pastikan tab sheetName ada (auto-create jika belum ada)
+  await ensureSheetExists(sheets, spreadsheetId, sheetName);
+
+  // 2. Cek apakah baris 1 (Header) sudah ada
   const existingData = await sheets.spreadsheets.values.get({
     spreadsheetId,
-    range: `${sheetName}!A1:E1`,
+    range: `${sheetName}!A1:F1`,
   });
 
   const firstRow = existingData.data.values?.[0];
@@ -140,7 +166,7 @@ export async function appendToGoogleSheet(
   if (needsHeader) {
     await sheets.spreadsheets.values.update({
       spreadsheetId,
-      range: `${sheetName}!A1:E1`,
+      range: `${sheetName}!A1:F1`,
       valueInputOption: 'USER_ENTERED',
       requestBody: { values: [SHEET_HEADERS] },
     });

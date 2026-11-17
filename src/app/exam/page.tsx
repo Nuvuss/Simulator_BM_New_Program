@@ -381,7 +381,7 @@ export default function ExamPage() {
 
             {/* Badge */}
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-gray-800 bg-gray-100 mb-2">
-              <span>Sesi {examState.currentLeadIndex + 1} dari 3</span>
+              <span>Sesi {examState.currentLeadIndex + 1} dari {leads.length}</span>
               <span>•</span>
               <span className="text-[#075E54]">{currentLead.name}</span>
             </div>
@@ -458,7 +458,7 @@ export default function ExamPage() {
             leadProfile={currentLead.profile}
             remainingTime={remaining}
             onTimeout={handleTimerExpired}
-            sectionLabel={`${examState.currentLeadIndex + 1}/3`}
+            sectionLabel={`${examState.currentLeadIndex + 1}/${leads.length}`}
             isTimerRunning={isTimerRunning}
             timerKey={timerKey}
           />
