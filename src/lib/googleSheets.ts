@@ -153,10 +153,13 @@ export async function appendToGoogleSheet(
   // 1. Pastikan tab sheetName ada (auto-create jika belum ada)
   await ensureSheetExists(sheets, spreadsheetId, sheetName);
 
+  // Bungkus nama sheet dengan tanda petik tunggal untuk mendukung nama dengan spasi (A1 notation)
+  const safeSheetName = `'${sheetName.replace(/'/g, "''")}'`;
+
   // 2. Cek apakah baris 1 (Header) sudah ada
   const existingData = await sheets.spreadsheets.values.get({
     spreadsheetId,
-    range: `${sheetName}!A1:F1`,
+    range: `${safeSheetName}!A1:F1`,
   });
 
   const firstRow = existingData.data.values?.[0];
@@ -166,19 +169,19 @@ export async function appendToGoogleSheet(
   if (needsHeader) {
     await sheets.spreadsheets.values.update({
       spreadsheetId,
-      range: `${sheetName}!A1:F1`,
+      range: `${safeSheetName}!A1:F1`,
       valueInputOption: 'USER_ENTERED',
       requestBody: { values: [SHEET_HEADERS] },
     });
   }
 
-  // 2. Format 1 baris per kandidat
+  // 3. Format 1 baris per kandidat
   const candidateRow = formatCandidateRow(messages, candidateName, candidateEmail);
 
-  // 3. Append baris kandidat ke sheet
+  // 4. Append baris kandidat ke sheet
   await sheets.spreadsheets.values.append({
     spreadsheetId,
-    range: sheetName,
+    range: `${safeSheetName}!A1`,
     valueInputOption: 'USER_ENTERED',
     requestBody: { values: [candidateRow] },
   });

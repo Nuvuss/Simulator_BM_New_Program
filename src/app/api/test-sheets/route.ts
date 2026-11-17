@@ -50,10 +50,12 @@ export async function GET() {
     // Pastikan tab sheetName ada
     await ensureSheetExists(sheets, sheetId, sheetName);
 
+    const safeSheetName = `'${sheetName.replace(/'/g, "''")}'`;
+
     // Coba append baris diagnosa
     const appendRes = await sheets.spreadsheets.values.append({
       spreadsheetId: sheetId,
-      range: sheetName,
+      range: `${safeSheetName}!A1`,
       valueInputOption: 'USER_ENTERED',
       requestBody: {
         values: [
