@@ -4,11 +4,12 @@ import { Timer } from './Timer';
 
 interface ChatHeaderProps {
   leadName: string;
-  leadAvatar: string;
   leadProfile: string;
   remainingTime: number;
   onTimeout: () => void;
   sectionLabel: string;
+  isTimerRunning?: boolean;
+  timerKey?: string;
 }
 
 export function ChatHeader({
@@ -17,21 +18,13 @@ export function ChatHeader({
   remainingTime,
   onTimeout,
   sectionLabel,
+  isTimerRunning = true,
+  timerKey,
 }: ChatHeaderProps) {
   return (
-    <div className="bg-[#075E54] text-white px-3 py-2.5 flex items-center justify-between shadow-md z-20 flex-shrink-0 select-none">
-      {/* Left side: Back arrow, Profile Picture, Name & Status */}
-      <div className="flex items-center gap-2 min-w-0">
-        <button
-          type="button"
-          className="text-white hover:opacity-80 p-0.5 rounded-full"
-          title="Kembali"
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-
+    <div className="bg-[#075E54] text-white px-3.5 py-2.5 flex items-center justify-between shadow-md z-20 flex-shrink-0 select-none">
+      {/* Left side: Profile Picture, Name & Status */}
+      <div className="flex items-center gap-2.5 min-w-0">
         {/* RevoU Profile Photo */}
         <div className="relative w-10 h-10 rounded-full overflow-hidden flex-shrink-0 border border-white/20 bg-[#FFDE3D] shadow-sm">
           <img
@@ -63,7 +56,12 @@ export function ChatHeader({
         <span className="text-[11px] font-semibold bg-[#128C7E] text-white px-2 py-0.5 rounded-full transition-all duration-300">
           {sectionLabel}
         </span>
-        <Timer remainingTime={remainingTime} onTimeout={onTimeout} />
+        <Timer
+          key={timerKey}
+          remainingTime={remainingTime}
+          onTimeout={onTimeout}
+          isRunning={isTimerRunning}
+        />
       </div>
     </div>
   );

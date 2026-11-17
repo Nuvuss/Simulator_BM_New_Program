@@ -4,16 +4,27 @@ interface ChatBubbleProps {
   sender: 'bm' | 'lead';
   text: string;
   timestamp: string;
-  leadName?: string;
 }
 
 export function ChatBubble({ sender, text, timestamp }: ChatBubbleProps) {
   const isBM = sender === 'bm';
+  const isSystemTimeout = !isBM && text.startsWith('⏱');
   const time = new Date(timestamp).toLocaleTimeString('id-ID', {
     hour: '2-digit',
     minute: '2-digit',
     timeZone: 'Asia/Jakarta',
   });
+
+  if (isSystemTimeout) {
+    return (
+      <div className="flex justify-center my-3 px-4 animate-message-in">
+        <div className="bg-amber-50/95 border border-amber-200 text-amber-900 text-xs font-medium px-3.5 py-2 rounded-xl shadow-xs text-center flex items-center gap-2">
+          <span>{text}</span>
+          <span className="text-[10px] text-amber-700/80 font-normal">{time}</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={`flex ${isBM ? 'justify-end' : 'justify-start'} mb-2 px-3 animate-message-in`}>
@@ -24,16 +35,6 @@ export function ChatBubble({ sender, text, timestamp }: ChatBubbleProps) {
             : 'bg-white rounded-tl-none'
         }`}
       >
-        {/* Tail */}
-        <div
-          className={`absolute top-0 w-3 h-3 ${
-            isBM
-              ? 'right-[-6px] border-l-[6px] border-l-[#DCF8C6] border-t-[6px] border-t-[#DCF8C6] border-r-[6px] border-r-transparent border-b-[6px] border-b-transparent'
-              : 'left-[-6px] border-r-[6px] border-r-white border-t-[6px] border-t-white border-l-[6px] border-l-transparent border-b-[6px] border-b-transparent'
-          }`}
-          style={{ display: 'none' }}
-        />
-
         <p className="text-sm text-[#111B21] whitespace-pre-wrap break-words leading-relaxed">
           {text}
         </p>

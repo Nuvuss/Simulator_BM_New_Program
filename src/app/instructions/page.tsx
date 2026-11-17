@@ -24,7 +24,7 @@ export default function InstructionsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center p-4 sm:p-6 font-sans">
+    <div className="min-h-dvh bg-white flex items-center justify-center p-4 sm:p-6 font-sans">
       <div className="bg-white rounded-3xl border border-gray-200/90 shadow-xl shadow-gray-100 max-w-lg w-full p-6 sm:p-8">
         {/* Header with RevoU logo */}
         <div className="text-center mb-6">
@@ -43,9 +43,18 @@ export default function InstructionsPage() {
             Informasi Sebelum Mengerjakan Tes
           </h1>
           {candidateName && (
-            <p className="text-sm text-gray-600 mt-1">
-              Halo, <span className="font-bold text-[#E7000B]">{candidateName}</span>! Harap baca informasi berikut sebelum memulai ujian.
-            </p>
+            <div className="mt-1">
+              <p className="text-sm text-gray-600">
+                Halo, <span className="font-bold text-[#E7000B]">{candidateName}</span>! Harap baca informasi berikut sebelum memulai ujian.
+              </p>
+              <button
+                type="button"
+                onClick={() => router.push('/')}
+                className="mt-1 text-xs text-gray-500 hover:text-gray-800 underline transition-colors cursor-pointer"
+              >
+                ← Ubah data diri
+              </button>
+            </div>
           )}
         </div>
 
@@ -67,11 +76,14 @@ export default function InstructionsPage() {
             </h3>
             <div className="flex items-start gap-2">
               <span className="font-bold text-[#E7000B]">1.</span>
-              <span>Kamu akan berhadapan dengan bot yang berperan sebagai<strong> 3 calon siswa (lead)</strong> dengan profil yang berbeda secara berurutan. <strong>Career Switcher daftar untuk Digital Marketing</strong>, <strong>Fresh Graduate daftar untuk data Analytics</strong>, dan <strong>Profesional Upskiller daftar untuk Data-Driven Decision Making ITB x RevoU</strong></span>
+              <span>
+                Kamu akan berhadapan dengan bot yang berperan sebagai <strong>3 calon siswa (lead)</strong> dengan profil yang berbeda secara berurutan: <strong>Career Switcher daftar untuk Digital Marketing</strong>, <strong>Fresh Graduate daftar untuk Data Analytics</strong>, dan <strong>Profesional Upskiller daftar untuk Data-Driven Decision Making ITB x RevoU</strong>.
+              </span>
             </div>
             <div className="flex items-start gap-2">
               <span className="font-bold text-[#E7000B]">2.</span>
-              <span>  Baca & pahami dahulu ketiga halaman program sesuai yang disebutkan poin 1 di situs web RevoU (<a href="https://revou.co" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline font-medium hover:text-blue-800">revou.co</a>). Perhatikan kurikulum, learning journey, dan kisah atau portofolio para alumni, sehingga Anda dapat menanggapi leads tersebut dengan percaya diri.
+              <span>
+                Baca & pahami dahulu ketiga halaman program sesuai yang disebutkan poin 1 di situs web RevoU (<a href="https://revou.co" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline font-medium hover:text-blue-800">revou.co</a>). Perhatikan kurikulum, learning journey, dan kisah atau portofolio para alumni, sehingga Anda dapat menanggapi leads tersebut dengan percaya diri.
               </span>
             </div>
             <div className="flex items-start gap-2">

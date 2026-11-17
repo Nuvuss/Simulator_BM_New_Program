@@ -1,0 +1,199 @@
+{
+  "name": "simulator-bm",
+  "description": "Interactive WhatsApp-style chat exam simulator for RevoU Booking Manager (Admission Executive) candidates across 3 timed lead personas (Rina, Dimas, Shania) with Google Sheets transcript submission.",
+  "scriptCompleted": true,
+  "languages": [
+    "typescript",
+    "css"
+  ],
+  "frameworks": [
+    "Next.js",
+    "React",
+    "Tailwind CSS"
+  ],
+  "files": [
+    {
+      "path": "src/app/api/submit/route.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "sizeLines": 34
+    },
+    {
+      "path": "src/app/api/test-sheets/route.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "sizeLines": 88
+    },
+    {
+      "path": "src/app/exam/page.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "sizeLines": 521
+    },
+    {
+      "path": "src/app/globals.css",
+      "language": "css",
+      "fileCategory": "code",
+      "sizeLines": 200
+    },
+    {
+      "path": "src/app/instructions/page.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "sizeLines": 134
+    },
+    {
+      "path": "src/app/layout.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "sizeLines": 29
+    },
+    {
+      "path": "src/app/page.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "sizeLines": 150
+    },
+    {
+      "path": "src/app/thankyou/page.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "sizeLines": 125
+    },
+    {
+      "path": "src/components/ChatBubble.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "sizeLines": 54
+    },
+    {
+      "path": "src/components/ChatHeader.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "sizeLines": 69
+    },
+    {
+      "path": "src/components/ChatInput.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "sizeLines": 69
+    },
+    {
+      "path": "src/components/Timer.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "sizeLines": 118
+    },
+    {
+      "path": "src/components/TypingIndicator.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "sizeLines": 25
+    },
+    {
+      "path": "src/data/leads.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "sizeLines": 140
+    },
+    {
+      "path": "src/lib/examEngine.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "sizeLines": 242
+    },
+    {
+      "path": "src/lib/googleSheets.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "sizeLines": 160
+    },
+    {
+      "path": "src/lib/shuffle.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "sizeLines": 17
+    },
+    {
+      "path": "src/lib/storage.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "sizeLines": 27
+    },
+    {
+      "path": "src/types/index.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "sizeLines": 57
+    }
+  ],
+  "totalFiles": 19,
+  "filteredByIgnore": 0,
+  "estimatedComplexity": "small",
+  "stats": {
+    "filesScanned": 19,
+    "byCategory": {
+      "code": 19
+    },
+    "byLanguage": {
+      "typescript": 19,
+      "css": 1
+    }
+  },
+  "importMap": {
+    "src/app/api/submit/route.ts": [
+      "src/lib/googleSheets.ts"
+    ],
+    "src/app/api/test-sheets/route.ts": [
+      "src/lib/googleSheets.ts"
+    ],
+    "src/app/exam/page.tsx": [
+      "src/components/ChatHeader.tsx",
+      "src/components/ChatBubble.tsx",
+      "src/components/ChatInput.tsx",
+      "src/components/TypingIndicator.tsx",
+      "src/data/leads.ts",
+      "src/lib/examEngine.ts",
+      "src/lib/storage.ts",
+      "src/types/index.ts"
+    ],
+    "src/app/globals.css": [],
+    "src/app/instructions/page.tsx": [
+      "src/lib/storage.ts"
+    ],
+    "src/app/layout.tsx": [
+      "src/app/globals.css"
+    ],
+    "src/app/page.tsx": [
+      "src/lib/examEngine.ts",
+      "src/lib/storage.ts"
+    ],
+    "src/app/thankyou/page.tsx": [
+      "src/lib/storage.ts",
+      "src/data/leads.ts"
+    ],
+    "src/components/ChatBubble.tsx": [],
+    "src/components/ChatHeader.tsx": [
+      "src/components/Timer.tsx"
+    ],
+    "src/components/ChatInput.tsx": [],
+    "src/components/Timer.tsx": [],
+    "src/components/TypingIndicator.tsx": [],
+    "src/data/leads.ts": [
+      "src/types/index.ts"
+    ],
+    "src/lib/examEngine.ts": [
+      "src/types/index.ts",
+      "src/data/leads.ts",
+      "src/lib/shuffle.ts"
+    ],
+    "src/lib/googleSheets.ts": [
+      "src/types/index.ts"
+    ],
+    "src/lib/shuffle.ts": [],
+    "src/lib/storage.ts": [
+      "src/types/index.ts"
+    ],
+    "src/types/index.ts": []
+  }
+}

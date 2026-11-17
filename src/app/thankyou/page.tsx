@@ -7,30 +7,44 @@ import { leads } from '@/data/leads';
 export default function ThankYouPage() {
   const [summary, setSummary] = useState<{
     name: string;
-    sections: { leadName: string; reason: string; messageCount: number }[];
+    sections: {
+      leadName: string;
+      status: 'booked' | 'timeout' | null;
+      reason: string;
+      replyCount: number;
+    }[];
   } | null>(null);
 
   useEffect(() => {
     const state = loadExamState();
     if (state) {
-      const sections = leads.map((lead, i) => ({
-        leadName: lead.name,
-        reason:
-          state.sectionEndReasons[i] === 'booked'
-            ? 'Booking Berhasil ✅'
-            : state.sectionEndReasons[i] === 'timeout'
-            ? 'Waktu Habis ⏱'
-            : 'Selesai',
-        messageCount: state.messages.filter((m) => m.sectionIndex === i).length,
-      }));
+      const sections = leads.map((lead, i) => {
+        const sectionBmMessages = state.messages.filter(
+          (m) => m.sectionIndex === i && m.sender === 'bm'
+        );
+        // Exclude the automatic initial greeting message (which has no responseTimeSec)
+        const candidateReplies = sectionBmMessages.filter(
+          (m) => m.responseTimeSec !== undefined
+        );
+
+        return {
+          leadName: lead.name,
+          status: state.sectionEndReasons[i],
+          reason:
+            state.sectionEndReasons[i] === 'booked'
+              ? 'Booking Berhasil ✅'
+              : state.sectionEndReasons[i] === 'timeout'
+              ? 'Waktu Habis ⏱'
+              : 'Selesai',
+          replyCount: candidateReplies.length,
+        };
+      });
       setSummary({ name: state.candidateName, sections });
-      // Keep state for a while then clear
-      setTimeout(() => clearExamState(), 10000);
     }
   }, []);
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center p-4 sm:p-6 font-sans">
+    <div className="min-h-dvh bg-white flex items-center justify-center p-4 sm:p-6 font-sans">
       <div className="bg-white rounded-3xl border border-gray-200/90 shadow-xl shadow-gray-100 max-w-md w-full p-6 sm:p-8 text-center">
         {/* RevoU Logo */}
         <div className="w-16 h-16 mx-auto rounded-full bg-white p-1 shadow-md border border-gray-100 mb-3">
@@ -55,22 +69,35 @@ export default function ThankYouPage() {
                 Ringkasan Sesi Anda:
               </h3>
               <div className="space-y-2.5">
-                {summary.sections.map((section, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center justify-between bg-white border border-gray-100 rounded-xl p-3 shadow-2xs"
-                  >
-                    <div>
-                      <p className="font-semibold text-xs text-gray-900">
-                        Sesi {i + 1}: {section.leadName}
-                      </p>
-                      <p className="text-[11px] text-gray-500">{section.messageCount} pesan terkirim</p>
+                {summary.sections.map((section, i) => {
+                  const badgeStyle =
+                    section.status === 'booked'
+                      ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                      : section.status === 'timeout'
+                      ? 'bg-amber-50 text-amber-800 border border-amber-200'
+                      : 'bg-gray-100 text-gray-700 border border-gray-200';
+
+                  return (
+                    <div
+                      key={i}
+                      className="flex items-center justify-between bg-white border border-gray-100 rounded-xl p-3 shadow-2xs"
+                    >
+                      <div>
+                        <p className="font-semibold text-xs text-gray-900">
+                          Sesi {i + 1}: {section.leadName}
+                        </p>
+                        <p className="text-[11px] text-gray-500">
+                          {section.replyCount} balasan terkirim
+                        </p>
+                      </div>
+                      <span
+                        className={`text-xs font-medium px-2.5 py-1 rounded-full ${badgeStyle}`}
+                      >
+                        {section.reason}
+                      </span>
                     </div>
-                    <span className="text-xs font-medium text-gray-700 bg-gray-100 px-2.5 py-1 rounded-full">
-                      {section.reason}
-                    </span>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </>
@@ -87,7 +114,7 @@ export default function ThankYouPage() {
             clearExamState();
             window.location.href = '/';
           }}
-          className="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-3 px-4 rounded-xl text-xs transition-colors"
+          className="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-3 px-4 rounded-xl text-xs transition-colors cursor-pointer"
         >
           Selesai & Keluar
         </button>

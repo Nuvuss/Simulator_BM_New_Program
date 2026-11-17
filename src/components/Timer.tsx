@@ -1,40 +1,53 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface TimerProps {
   remainingTime: number;
   onTimeout: () => void;
   totalTime?: number;
+  isRunning?: boolean;
 }
 
-export function Timer({ remainingTime, onTimeout, totalTime = 900 }: TimerProps) {
+export function Timer({
+  remainingTime,
+  onTimeout,
+  totalTime = 900,
+  isRunning = true,
+}: TimerProps) {
   const [timeLeft, setTimeLeft] = useState(Math.ceil(remainingTime));
+  const onTimeoutRef = useRef(onTimeout);
+  const hasExpiredRef = useRef(false);
 
   useEffect(() => {
-    setTimeLeft(Math.ceil(remainingTime));
+    onTimeoutRef.current = onTimeout;
+  }, [onTimeout]);
+
+  useEffect(() => {
+    const nextTime = Math.ceil(remainingTime);
+    setTimeLeft(nextTime);
+    if (nextTime > 0) {
+      hasExpiredRef.current = false;
+    }
   }, [remainingTime]);
 
   useEffect(() => {
+    if (!isRunning) return;
+
     if (timeLeft <= 0) {
-      onTimeout();
+      if (!hasExpiredRef.current) {
+        hasExpiredRef.current = true;
+        onTimeoutRef.current();
+      }
       return;
     }
 
     const interval = setInterval(() => {
-      setTimeLeft((prev) => {
-        const next = prev - 1;
-        if (next <= 0) {
-          clearInterval(interval);
-          onTimeout();
-          return 0;
-        }
-        return next;
-      });
+      setTimeLeft((prev) => Math.max(0, prev - 1));
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [timeLeft, onTimeout]);
+  }, [timeLeft, isRunning]);
 
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;

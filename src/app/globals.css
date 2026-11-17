@@ -62,7 +62,7 @@ body {
   animation: messageSlideIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Modal Animations */
+/* Modal Backdrop Animations */
 @keyframes modalBackdropIn {
   from {
     opacity: 0;
@@ -81,28 +81,6 @@ body {
   }
 }
 
-@keyframes modalContentIn {
-  from {
-    opacity: 0;
-    transform: scale(0.94) translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-@keyframes modalContentOut {
-  from {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: scale(0.95) translateY(10px);
-  }
-}
-
 .animate-modal-backdrop-in {
   animation: modalBackdropIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
@@ -111,15 +89,7 @@ body {
   animation: modalBackdropOut 0.22s ease-in forwards;
 }
 
-.animate-modal-content-in {
-  animation: modalContentIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.animate-modal-content-out {
-  animation: modalContentOut 0.22s ease-in forwards;
-}
-
-/* Smooth Fade In / Out */
+/* Smooth Fade In */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -129,21 +99,8 @@ body {
   }
 }
 
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
 .animate-fade-in {
   animation: fadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.animate-fade-out {
-  animation: fadeOut 0.22s ease-in forwards;
 }
 
 /* Lateral Horizontal (Geser) Animations */
@@ -158,23 +115,8 @@ body {
   }
 }
 
-@keyframes slideOutLeft {
-  from {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-}
-
 .animate-slide-in-right {
   animation: slideInRight 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.animate-slide-out-left {
-  animation: slideOutLeft 0.26s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Modal Lateral Horizontal Slide (In from right, Out to left) */
@@ -237,4 +179,21 @@ body {
 
 .animate-screen-slide-in-right {
   animation: screenSlideInRight 0.34s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .animate-message-in,
+  .animate-modal-backdrop-in,
+  .animate-modal-backdrop-out,
+  .animate-fade-in,
+  .animate-slide-in-right,
+  .animate-modal-slide-in-right,
+  .animate-modal-slide-out-left,
+  .animate-screen-slide-out-left,
+  .animate-screen-slide-in-right {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

@@ -34,6 +34,7 @@ export default function ExamPage() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const initializedRef = useRef(false);
+  const timeoutLockRef = useRef<string | null>(null);
 
   // Animate opening messages (show msg 1 immediately, msg 2 after delay)
   const animateOpeningMessages = useCallback((state: ExamState) => {
@@ -96,31 +97,24 @@ export default function ExamPage() {
     }
   }, [displayMessages, isTyping]);
 
-  // Timer check
-  useEffect(() => {
+  const handleTimerExpired = useCallback(() => {
     if (
       !examState ||
-      examState.phase === 'done' ||
-      examState.phase === 'booking-confirm' ||
+      !examState.sectionStartTime ||
       showWelcomeModal ||
       Boolean(transitionOverlay) ||
-      !examState.sectionStartTime
+      examState.phase === 'done' ||
+      examState.phase === 'booking-confirm'
     )
       return;
 
-    const interval = setInterval(() => {
-      if (isTimedOut(examState)) {
-        handleTimerExpired();
-      }
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [examState, showWelcomeModal, transitionOverlay]);
-
-  const handleTimerExpired = useCallback(() => {
-    if (!examState) return;
+    const lockKey = `${examState.currentLeadIndex}-${examState.sectionStartTime}`;
+    if (timeoutLockRef.current === lockKey) return;
+    timeoutLockRef.current = lockKey;
 
     const newState = handleTimeout(examState);
+    setExamState(newState);
+    saveExamState(newState);
 
     // Add timeout message to display
     const timeoutMsg = newState.messages[newState.messages.length - 1];
@@ -163,7 +157,28 @@ export default function ExamPage() {
         }, 1200);
       }
     }, 1800);
-  }, [examState]);
+  }, [examState, showWelcomeModal, transitionOverlay]);
+
+  // Timer check
+  useEffect(() => {
+    if (
+      !examState ||
+      examState.phase === 'done' ||
+      examState.phase === 'booking-confirm' ||
+      showWelcomeModal ||
+      Boolean(transitionOverlay) ||
+      !examState.sectionStartTime
+    )
+      return;
+
+    const interval = setInterval(() => {
+      if (isTimedOut(examState)) {
+        handleTimerExpired();
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [examState, showWelcomeModal, transitionOverlay, handleTimerExpired]);
 
   const handleSend = useCallback(
     (text: string) => {
@@ -293,8 +308,8 @@ export default function ExamPage() {
   // Loading state
   if (!examState) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center p-4">
-        <div className="w-full sm:max-w-[420px] h-[600px] bg-white rounded-3xl shadow-xl flex flex-col items-center justify-center p-6 text-center border border-gray-100">
+      <div className="min-h-dvh bg-white sm:bg-gray-100 flex items-center justify-center p-0 sm:py-3 sm:px-4 font-sans">
+        <div className="w-full sm:max-w-[420px] h-dvh sm:h-[94vh] sm:max-h-[860px] bg-white sm:rounded-[32px] sm:shadow-2xl sm:border-[6px] sm:border-gray-800 flex flex-col items-center justify-center p-6 text-center">
           <div className="animate-spin w-10 h-10 border-4 border-[#25D366] border-t-transparent rounded-full mb-4" />
           <p className="text-gray-600 font-medium">Memuat simulasi ujian...</p>
         </div>
@@ -305,8 +320,8 @@ export default function ExamPage() {
   // Submitting state
   if (isSubmitting) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center p-4">
-        <div className="w-full sm:max-w-[420px] h-[600px] bg-[#075E54] text-white rounded-3xl shadow-2xl flex flex-col items-center justify-center p-6 text-center">
+      <div className="min-h-dvh bg-white sm:bg-gray-100 flex items-center justify-center p-0 sm:py-3 sm:px-4 font-sans">
+        <div className="w-full sm:max-w-[420px] h-dvh sm:h-[94vh] sm:max-h-[860px] bg-[#075E54] text-white sm:rounded-[32px] sm:shadow-2xl sm:border-[6px] sm:border-gray-800 flex flex-col items-center justify-center p-6 text-center">
           <div className="animate-spin w-12 h-12 border-4 border-white border-t-transparent rounded-full mb-4" />
           <h2 className="text-xl font-bold mb-2">Mengirim Hasil...</h2>
           <p className="text-green-200 text-sm">Sedang memproses hasil tes Anda. Mohon tunggu sebentar.</p>
@@ -318,9 +333,16 @@ export default function ExamPage() {
   const currentLead = leads[examState.currentLeadIndex];
   const remaining = getRemainingTime(examState);
   const isSectionDone = examState.phase === 'done' || examState.phase === 'booking-confirm';
+  const isTimerRunning = Boolean(
+    examState.sectionStartTime &&
+      !showWelcomeModal &&
+      !transitionOverlay &&
+      !isSectionDone
+  );
+  const timerKey = `${examState.currentLeadIndex}-${examState.sectionStartTime ?? 'idle'}`;
 
   return (
-    <div className="min-h-screen bg-white sm:bg-gray-100 flex items-center justify-center p-0 sm:py-3 sm:px-4 font-sans relative">
+    <div className="min-h-dvh bg-white sm:bg-gray-100 flex items-center justify-center p-0 sm:py-3 sm:px-4 font-sans relative">
       {/* Smooth Transition Overlay Between Sessions */}
       {transitionOverlay && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
@@ -348,7 +370,7 @@ export default function ExamPage() {
           }`}
         >
           <div
-            className={`bg-white rounded-3xl p-5 sm:p-7 max-w-sm w-full text-center shadow-2xl border border-gray-100 max-h-[92vh] overflow-y-auto ${
+            className={`bg-white rounded-3xl p-5 sm:p-7 max-w-sm w-full text-center shadow-2xl border border-gray-100 max-h-[92dvh] overflow-y-auto ${
               isModalClosing ? 'animate-modal-slide-out-left' : 'animate-modal-slide-in-right'
             }`}
           >
@@ -370,7 +392,7 @@ export default function ExamPage() {
             </h2>
 
             <p className="text-xs sm:text-sm text-gray-600 mb-3.5 leading-relaxed">
-              Halo <strong className="text-gray-900">{examState.candidateName}</strong>! kamu akan chat bersama <strong className="text-[#075E54]">{currentLead.name}</strong> (<strong className="font-bold text-gray-900">{currentLead.profile}</strong>) akan segera dimulai.
+              Halo <strong className="text-gray-900">{examState.candidateName}</strong>! Sesi chat bersama <strong className="text-[#075E54]">{currentLead.name}</strong> (<strong className="font-bold text-gray-900">{currentLead.profile}</strong>) akan segera dimulai.
             </p>
 
             <div className="space-y-2 mb-5 text-left text-xs">
@@ -404,7 +426,7 @@ export default function ExamPage() {
       )}
 
       {/* Mobile Portrait Phone Frame */}
-      <div className="w-full sm:max-w-[420px] h-screen sm:h-[94vh] sm:max-h-[860px] flex flex-col bg-[#ECE5DD] sm:rounded-[32px] sm:shadow-2xl overflow-hidden sm:border-[6px] sm:border-gray-800 relative">
+      <div className="w-full sm:max-w-[420px] h-dvh sm:h-[94vh] sm:max-h-[860px] flex flex-col bg-[#ECE5DD] sm:rounded-[32px] sm:shadow-2xl overflow-hidden sm:border-[6px] sm:border-gray-800 relative">
 
         {/* Smartphone top speaker & camera notch (desktop only) */}
         <div className="hidden sm:flex items-center justify-between px-6 pt-2 pb-1.5 bg-[#075E54] text-white text-[11px] font-medium z-30 select-none">
@@ -433,11 +455,12 @@ export default function ExamPage() {
           {/* WhatsApp Chat Header */}
           <ChatHeader
             leadName={currentLead.name}
-            leadAvatar={currentLead.avatar}
             leadProfile={currentLead.profile}
             remainingTime={remaining}
             onTimeout={handleTimerExpired}
             sectionLabel={`${examState.currentLeadIndex + 1}/3`}
+            isTimerRunning={isTimerRunning}
+            timerKey={timerKey}
           />
 
           {/* Chat Messages Body */}
@@ -466,7 +489,6 @@ export default function ExamPage() {
                 sender={msg.sender}
                 text={msg.text}
                 timestamp={msg.timestamp}
-                leadName={msg.leadName}
               />
             ))}
 

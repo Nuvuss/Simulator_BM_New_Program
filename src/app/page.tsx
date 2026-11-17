@@ -10,9 +10,11 @@ export default function RegistrationPage() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
     setError('');
 
     if (!name.trim()) {
@@ -24,6 +26,7 @@ export default function RegistrationPage() {
       return;
     }
 
+    setIsSubmitting(true);
     // Always create a fresh state for the submitted candidate and proceed to instructions
     const state = createInitialState(name.trim(), email.trim());
     saveExamState(state);
@@ -31,7 +34,7 @@ export default function RegistrationPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center justify-center p-4 sm:p-6 font-sans">
+    <div className="min-h-dvh bg-white flex flex-col items-center justify-center p-4 sm:p-6 font-sans">
       <div className="w-full max-w-[460px] flex flex-col items-center">
         {/* RevoU Official Logo */}
         <div className="w-20 h-20 rounded-full bg-white p-1 shadow-md border border-gray-100 mb-4">
@@ -60,11 +63,16 @@ export default function RegistrationPage() {
         <div className="w-full bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/90 shadow-xl shadow-gray-100">
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <div className="flex flex-col">
-              <label className="text-sm font-semibold text-gray-700 mb-1.5">
+              <label
+                htmlFor="candidate-name"
+                className="text-sm font-semibold text-gray-700 mb-1.5"
+              >
                 Nama
               </label>
               <input
+                id="candidate-name"
                 type="text"
+                autoComplete="name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Masukkan nama lengkap"
@@ -73,11 +81,16 @@ export default function RegistrationPage() {
             </div>
 
             <div className="flex flex-col">
-              <label className="text-sm font-semibold text-gray-700 mb-1.5">
+              <label
+                htmlFor="candidate-email"
+                className="text-sm font-semibold text-gray-700 mb-1.5"
+              >
                 Email saat mendaftar di RevoU
               </label>
               <input
+                id="candidate-email"
                 type="email"
+                autoComplete="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="nama@email.com"
@@ -86,7 +99,9 @@ export default function RegistrationPage() {
             </div>
 
             {error && (
-              <p className="text-red-600 text-xs font-semibold">{error}</p>
+              <p className="text-red-600 text-xs font-semibold" role="alert">
+                {error}
+              </p>
             )}
 
             {/* Action Buttons */}
@@ -98,8 +113,9 @@ export default function RegistrationPage() {
                   setEmail('');
                   setError('');
                 }}
-                title="Reset input"
-                className="w-12 h-12 flex items-center justify-center text-gray-600 hover:text-gray-900 border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors flex-shrink-0 bg-white"
+                title="Reset form"
+                aria-label="Reset form"
+                className="w-12 h-12 flex items-center justify-center text-gray-600 hover:text-gray-900 border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors flex-shrink-0 bg-white cursor-pointer"
               >
                 <svg
                   className="w-5 h-5"
@@ -110,17 +126,18 @@ export default function RegistrationPage() {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth="2.5"
-                    d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                    strokeWidth="2.2"
+                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
                   />
                 </svg>
               </button>
 
               <button
                 type="submit"
-                className="flex-1 h-12 bg-[#E7000B] hover:bg-[#C8000A] active:scale-[0.99] text-white font-bold px-6 rounded-xl transition-all shadow-md text-base flex items-center justify-center gap-2"
+                disabled={isSubmitting}
+                className="flex-1 h-12 bg-[#E7000B] hover:bg-[#C8000A] active:scale-[0.99] text-white font-bold px-6 rounded-xl transition-all shadow-md text-base flex items-center justify-center gap-2 cursor-pointer disabled:opacity-80"
               >
-                <span>Lanjut</span>
+                <span>{isSubmitting ? 'Memproses...' : 'Lanjut'}</span>
                 <span className="text-lg">→</span>
               </button>
             </div>

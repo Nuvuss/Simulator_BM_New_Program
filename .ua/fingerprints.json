@@ -1,0 +1,301 @@
+{
+  "version": "1.0.0",
+  "gitCommitHash": "94d5eff8594c9fee46779ba7b6a888ea5ad4c7ac",
+  "generatedAt": "2026-11-17T08:26:48.169Z",
+  "files": {
+    "src/app/api/submit/route.ts": {
+      "filePath": "src/app/api/submit/route.ts",
+      "contentHash": "769d0737fe16638b6d85da08a2f2c97177db2826ec59b98be6a5ba7e30468f41",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "src/lib/googleSheets.ts",
+          "specifiers": []
+        }
+      ],
+      "exports": [],
+      "totalLines": 34,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/api/test-sheets/route.ts": {
+      "filePath": "src/app/api/test-sheets/route.ts",
+      "contentHash": "2617d79bfb6cfdf3acd29d2d492731a62ed33581335d339dcad36986485fbff5",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "src/lib/googleSheets.ts",
+          "specifiers": []
+        }
+      ],
+      "exports": [],
+      "totalLines": 88,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/exam/page.tsx": {
+      "filePath": "src/app/exam/page.tsx",
+      "contentHash": "a88acd6a1db305dbf9b70c0139c662d70c57f50f9b82c3c5925e782068c3e63e",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "src/components/ChatHeader.tsx",
+          "specifiers": []
+        },
+        {
+          "source": "src/components/ChatBubble.tsx",
+          "specifiers": []
+        },
+        {
+          "source": "src/components/ChatInput.tsx",
+          "specifiers": []
+        },
+        {
+          "source": "src/components/TypingIndicator.tsx",
+          "specifiers": []
+        },
+        {
+          "source": "src/data/leads.ts",
+          "specifiers": []
+        },
+        {
+          "source": "src/lib/examEngine.ts",
+          "specifiers": []
+        },
+        {
+          "source": "src/lib/storage.ts",
+          "specifiers": []
+        },
+        {
+          "source": "src/types/index.ts",
+          "specifiers": []
+        }
+      ],
+      "exports": [],
+      "totalLines": 521,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/globals.css": {
+      "filePath": "src/app/globals.css",
+      "contentHash": "1ae19f42dd112c9feb56a0c70b24cff1f1946a12c579df2f7ce02df4a4c79f1a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 200,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/instructions/page.tsx": {
+      "filePath": "src/app/instructions/page.tsx",
+      "contentHash": "77ab62215f0c5aa0407be881f800c6d7452d9db3e45510db1863b1fb28482cc3",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "src/lib/storage.ts",
+          "specifiers": []
+        }
+      ],
+      "exports": [],
+      "totalLines": 134,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/layout.tsx": {
+      "filePath": "src/app/layout.tsx",
+      "contentHash": "4e3130f10c7c9d3a0fba7387962fc8868b324844033736fef7b30dad9c8908ae",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "src/app/globals.css",
+          "specifiers": []
+        }
+      ],
+      "exports": [],
+      "totalLines": 29,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/page.tsx": {
+      "filePath": "src/app/page.tsx",
+      "contentHash": "14aabc402e69ac8d5a7c9bdcc00470d836906817168350b598fe4e65074dd593",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "src/lib/examEngine.ts",
+          "specifiers": []
+        },
+        {
+          "source": "src/lib/storage.ts",
+          "specifiers": []
+        }
+      ],
+      "exports": [],
+      "totalLines": 150,
+      "hasStructuralAnalysis": false
+    },
+    "src/app/thankyou/page.tsx": {
+      "filePath": "src/app/thankyou/page.tsx",
+      "contentHash": "c8ec9cd5a36d0547c81488638cf66de047a9e0cb3e6df0a09647554ab84c92be",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "src/lib/storage.ts",
+          "specifiers": []
+        },
+        {
+          "source": "src/data/leads.ts",
+          "specifiers": []
+        }
+      ],
+      "exports": [],
+      "totalLines": 125,
+      "hasStructuralAnalysis": false
+    },
+    "src/components/ChatBubble.tsx": {
+      "filePath": "src/components/ChatBubble.tsx",
+      "contentHash": "4ffdc3bd4fb2b4b244b9f885e8ec1c281e2515065371c745047e422183898b7f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 54,
+      "hasStructuralAnalysis": false
+    },
+    "src/components/ChatHeader.tsx": {
+      "filePath": "src/components/ChatHeader.tsx",
+      "contentHash": "380d14abbd88c024c12add38f44a19bc8d6d9b149715ef345ae1c628dc058b58",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "src/components/Timer.tsx",
+          "specifiers": []
+        }
+      ],
+      "exports": [],
+      "totalLines": 69,
+      "hasStructuralAnalysis": false
+    },
+    "src/components/ChatInput.tsx": {
+      "filePath": "src/components/ChatInput.tsx",
+      "contentHash": "872e04caee384b298ecd28bbddb08c27d8bd80300554e687551d1c5273bb2581",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 69,
+      "hasStructuralAnalysis": false
+    },
+    "src/components/Timer.tsx": {
+      "filePath": "src/components/Timer.tsx",
+      "contentHash": "30ea005595104f39fdcbcd7fb49c2dd84bf472eb5e1c8d6585424f19250694c8",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 118,
+      "hasStructuralAnalysis": false
+    },
+    "src/components/TypingIndicator.tsx": {
+      "filePath": "src/components/TypingIndicator.tsx",
+      "contentHash": "3c77a1f2f01d71e08d5272886cdb24599968b0edfabaa14f7091b925e43b1c0a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 25,
+      "hasStructuralAnalysis": false
+    },
+    "src/data/leads.ts": {
+      "filePath": "src/data/leads.ts",
+      "contentHash": "436afaef21af206d5a399f25559c1fdf6a822378dcc03777f4f1624395c606cd",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "src/types/index.ts",
+          "specifiers": []
+        }
+      ],
+      "exports": [],
+      "totalLines": 140,
+      "hasStructuralAnalysis": false
+    },
+    "src/lib/examEngine.ts": {
+      "filePath": "src/lib/examEngine.ts",
+      "contentHash": "19720af1a29d0ad14dd09207c8de196fe9da291b8affd956b0bc711c7c078902",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "src/types/index.ts",
+          "specifiers": []
+        },
+        {
+          "source": "src/data/leads.ts",
+          "specifiers": []
+        },
+        {
+          "source": "src/lib/shuffle.ts",
+          "specifiers": []
+        }
+      ],
+      "exports": [],
+      "totalLines": 242,
+      "hasStructuralAnalysis": false
+    },
+    "src/lib/googleSheets.ts": {
+      "filePath": "src/lib/googleSheets.ts",
+      "contentHash": "8977b9914219da015fae7d0007214a737f1a31dbe04692b172e73a7089d3b498",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "src/types/index.ts",
+          "specifiers": []
+        }
+      ],
+      "exports": [],
+      "totalLines": 160,
+      "hasStructuralAnalysis": false
+    },
+    "src/lib/shuffle.ts": {
+      "filePath": "src/lib/shuffle.ts",
+      "contentHash": "7ee4fe78f7a54a2fef992d055d3ca904d5aea6ec13acfcb13f93829e91bdeadf",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 17,
+      "hasStructuralAnalysis": false
+    },
+    "src/lib/storage.ts": {
+      "filePath": "src/lib/storage.ts",
+      "contentHash": "f55bad629cb8c8adbda5d1bfb2867270bca492b68e5dcc01a8ea795cb795ec63",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "src/types/index.ts",
+          "specifiers": []
+        }
+      ],
+      "exports": [],
+      "totalLines": 27,
+      "hasStructuralAnalysis": false
+    },
+    "src/types/index.ts": {
+      "filePath": "src/types/index.ts",
+      "contentHash": "6aee5b604b55b8e8bf759674bf598be0e19dfd5bd6a36a639c574ef1934f21d4",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 57,
+      "hasStructuralAnalysis": false
+    }
+  }
+}
