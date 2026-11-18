@@ -41,9 +41,9 @@ export const leads: Lead[] = [
       },
     ],
     bookingRequest:
-      'Oke kak, makasih penjelasannya! Aku mau deh ngobrol lebih lanjut sama AC-nya. Kapan ya kak bisa jadwalnya?',
+      'Oke kak, makasih penjelasannya! Aku mau deh ngobrol lebih lanjut sama Counselor-nya. Kapan ya kak bisa jadwalnya?',
     bookingConfirm:
-      'Siap kak, sudah aku catat ya! Nanti AC RevoU yang hubungi aku ya. Makasih banyak kak! 🙏',
+      'Siap kak, sudah aku catat ya! Nanti Counselor RevoU yang hubungi aku ya. Makasih banyak kak! 🙏',
     timeLimitSec: 1200,
   },
   {
@@ -86,9 +86,9 @@ export const leads: Lead[] = [
       },
     ],
     bookingRequest:
-      'Baik Pak/Bu, penjelasannya cukup jelas. Kalau begitu saya jadwalkan konsultasi dengan AC terlebih dahulu. Kapan waktunya yang tersedia?',
+      'Baik Pak/Bu, penjelasannya cukup jelas. Kalau begitu saya jadwalkan konsultasi dengan Counselor terlebih dahulu. Kapan waktunya yang tersedia?',
     bookingConfirm:
-      'Baik, terima kasih. Nanti dihubungi oleh tim AC ya. Terima kasih banyak atas bantuannya 🙏',
+      'Baik, terima kasih. Nanti dihubungi oleh Counselor RevoU ya. Terima kasih banyak atas bantuannya 🙏',
     timeLimitSec: 1200,
   },
   {
@@ -100,7 +100,7 @@ export const leads: Lead[] = [
     source: 'Application form',
     avatar: '👨',
     openingBM:
-      'Hai Kak Burhan! Salam kenal aku Admission Counselor untuk program *Applied Data Science with AI - RevoU × ITB* 🙌 Makasih banyak udh tertarik dgn programnya 😊\n\nSingkatnya, ini program advanced yg cocok utk analyst yg udh biasa report & explore data, dan skrg mau naik level: bangun *predictive model & AI-enabled data product 🎓\n\nSupaya aku bisa bantu konsultasi lebih tepat, boleh cerita dikit Kak: *saat ini role-nya apa, dan sehari-hari udh kerja dgn data seperti apa?* (misal SQL, dashboard, Python)',
+      'Hai Kak Burhan! Salam kenal aku Admission Counselor untuk program *Applied Data Science with AI - RevoU × ITB* 🙌 Makasih banyak udh tertarik dgn programnya 😊\n\nSingkatnya, ini program advanced yg cocok utk analyst yg udh biasa report & explore data, dan skrg mau naik level: bangun *predictive model & AI-enabled data product* 🎓\n\nSupaya aku bisa bantu konsultasi lebih tepat, boleh cerita dikit Kak: *saat ini role-nya apa, dan sehari-hari udh kerja dgn data seperti apa?* (misal SQL, dashboard, Python)',
     openingLead:
       'Sore kak, saya udh bisa SQL dan udh kerja sebagai analyst juga. Saat ini kerja sebagai Credit Analyst di perusahaan e-wallet. Ini programnya tuh gimana ya kak?',
     questions: [
@@ -131,9 +131,9 @@ export const leads: Lead[] = [
       },
     ],
     bookingRequest:
-      'Oke kak mantap, jelas banget. Boleh deh aku atur sesi konsultasi bareng AC-nya dulu. Jadwalnya kapan aja ya kak?',
+      'Oke kak mantap, jelas banget. Boleh aku atur sesi konsultasi bareng Counselor-nya dulu. Jadwalnya kapan aja ya kak?',
     bookingConfirm:
-      'Oke kak, sudah dicatat. Ditunggu kontak dari tim AC ya. Thank you kak! 🙌',
+      'Oke kak, sudah aku catat ya. Ditunggu kontak dari Counselor RevoU. Thank you kak! 🙌',
     timeLimitSec: 1200,
   },
   {
@@ -176,7 +176,7 @@ export const leads: Lead[] = [
       },
     ],
     bookingRequest:
-      'Oke deh kak, lumayan kebayang sekarang. Aku mau ikut sesi konsultasi sama AC-nya dulu. Kapan bisa dijadwalkan ya kak?',
+      'Oke deh kak, lumayan kebayang sekarang. Aku mau ikut sesi konsultasi sama Counselor-nya dulu. Kapan bisa dijadwalkan ya kak?',
     bookingConfirm:
       'Siap kak, aku tunggu ya. Makasih infonya kak! 😊',
     timeLimitSec: 1200,

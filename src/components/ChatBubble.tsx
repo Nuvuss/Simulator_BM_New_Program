@@ -6,6 +6,21 @@ interface ChatBubbleProps {
   timestamp: string;
 }
 
+function formatWhatsAppText(content: string) {
+  // Regex to match *bold* text without spanning across newlines
+  const parts = content.split(/(\*[^*\n]+?\*)/g);
+  return parts.map((part, index) => {
+    if (part.startsWith('*') && part.endsWith('*') && part.length > 2) {
+      return (
+        <strong key={index} className="font-bold">
+          {part.slice(1, -1)}
+        </strong>
+      );
+    }
+    return part;
+  });
+}
+
 export function ChatBubble({ sender, text, timestamp }: ChatBubbleProps) {
   const isBM = sender === 'bm';
   const isSystemTimeout = !isBM && text.startsWith('⏱');
@@ -36,7 +51,7 @@ export function ChatBubble({ sender, text, timestamp }: ChatBubbleProps) {
         }`}
       >
         <p className="text-sm text-[#111B21] whitespace-pre-wrap break-words leading-relaxed">
-          {text}
+          {formatWhatsAppText(text)}
         </p>
         <div className="flex justify-end items-center mt-1 gap-1">
           <span className="text-[10px] text-[#667781]">{time}</span>

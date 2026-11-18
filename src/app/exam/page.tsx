@@ -337,9 +337,9 @@ export default function ExamPage() {
   const isSectionDone = examState.phase === 'done' || examState.phase === 'booking-confirm';
   const isTimerRunning = Boolean(
     examState.sectionStartTime &&
-      !showWelcomeModal &&
-      !transitionOverlay &&
-      !isSectionDone
+    !showWelcomeModal &&
+    !transitionOverlay &&
+    !isSectionDone
   );
   const timerKey = `${examState.currentLeadIndex}-${examState.sectionStartTime ?? 'idle'}`;
 
@@ -367,14 +367,12 @@ export default function ExamPage() {
       {/* Pop Up: Selamat Mengerjakan */}
       {showWelcomeModal && (
         <div
-          className={`fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs ${
-            isModalClosing ? 'animate-modal-backdrop-out' : 'animate-modal-backdrop-in'
-          }`}
+          className={`fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs ${isModalClosing ? 'animate-modal-backdrop-out' : 'animate-modal-backdrop-in'
+            }`}
         >
           <div
-            className={`bg-white rounded-3xl p-5 sm:p-7 max-w-sm w-full text-center shadow-2xl border border-gray-100 max-h-[92dvh] overflow-y-auto ${
-              isModalClosing ? 'animate-modal-slide-out-left' : 'animate-modal-slide-in-right'
-            }`}
+            className={`bg-white rounded-3xl p-5 sm:p-7 max-w-sm w-full text-center shadow-2xl border border-gray-100 max-h-[92dvh] overflow-y-auto ${isModalClosing ? 'animate-modal-slide-out-left' : 'animate-modal-slide-in-right'
+              }`}
           >
             {/* Celebration Icon */}
             <div className="w-14 h-14 mx-auto rounded-full bg-[#FFF3CD] border border-[#FFEEBA] flex items-center justify-center text-2xl mb-2.5 shadow-xs">
@@ -394,7 +392,7 @@ export default function ExamPage() {
             </h2>
 
             <p className="text-xs sm:text-sm text-gray-600 mb-3.5 leading-relaxed">
-              Halo <strong className="text-gray-900">{examState.candidateName}</strong>! Sesi chat bersama <strong className="text-[#075E54]">{currentLead.name}</strong> (<strong className="font-bold text-gray-900">{currentLead.profile}</strong>) akan segera dimulai.
+              Halo <strong className="text-gray-900">{examState.candidateName}</strong>! Sesi chat bersama <strong className="text-[#075E54]">{currentLead.name}</strong> (<strong className="font-bold text-gray-900">{currentLead.profile}</strong>) yang tertarik dengan program <strong className="font-bold text-gray-900">{currentLead.program}</strong> akan segera dimulai.
             </p>
 
             <div className="space-y-2 mb-5 text-left text-xs">
@@ -446,13 +444,12 @@ export default function ExamPage() {
 
         {/* Active Chat Screen with Lateral Horizontal Slide Transition */}
         <div
-          className={`flex-1 flex flex-col min-h-0 overflow-hidden ${
-            screenTransition === 'slide-out'
-              ? 'animate-screen-slide-out-left'
-              : screenTransition === 'slide-in'
+          className={`flex-1 flex flex-col min-h-0 overflow-hidden ${screenTransition === 'slide-out'
+            ? 'animate-screen-slide-out-left'
+            : screenTransition === 'slide-in'
               ? 'animate-screen-slide-in-right'
               : ''
-          }`}
+            }`}
         >
           {/* WhatsApp Chat Header */}
           <ChatHeader

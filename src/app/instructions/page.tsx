@@ -99,12 +99,18 @@ export default function InstructionsPage() {
               <div className="space-y-1.5 flex-1">
                 <span>🚨 Kamu hanya bisa memberikan respon dengan <strong>1 bubble chat</strong>. Pastikan informasi, urgency, dan call to action yang ingin kamu sampaikan sudah tercantum langsung dalam 1 bubble chat sebelum kamu kirim.</span>
                 <div className="bg-amber-50/90 border border-amber-200/90 rounded-xl p-3 text-[11px] text-gray-700 leading-relaxed mt-1">
-                  <span className="font-bold text-amber-900 block mb-1">💡 Contoh:</span>
-                  <p className="italic text-gray-800">
-                    &ldquo;Halo Pak 😊Baik.. Saat ini memimpin cabang di industri telekomunikasi dan membawahi 4 divisi Sales, HR, Operation, dan New Roll Out ya pak. Baik.. itu tanggung jawab yg kompleks ya pak.. Sudah pasti keputusan bisnis harian, dan sinkronisasi data antar tim mungkin cukup menantang
-                    Nah, di program ini bapak akan belajar AI diposisikan sebagai 'force multiplier' utk kepemimpinan bpk, bukan pengganti intuisi bisnis 🚀 Program ini tanpa koding, fokus pada Decision Framing, perancangan Custom AI Assistant manajerial, hingga simulasi Executive Data Review. Di akhir sesi, Bpk bisa membawa tantangan riil di cabang kantor bapak jd Capstone Project. Sehingga selesai program sudah bawah playbook yg siap eksekusi, dan dapat ITB Certificate Course resmi.
-                    Berkenan aku bantu kirimkan rincian silabus lengkapnya dan atur sesi ngobrol santai 1:1 via konsultasi gratis Pak? Siapa tahu bisa jadi bekal berharga untuk akselerasi performa cabang bapak✨&rdquo;
-                  </p>
+                  <span className="font-bold text-amber-900 block mb-1.5">💡 Contoh:</span>
+                  <div className="space-y-2 italic text-gray-800">
+                    <p>
+                      &ldquo;Halo Pak 😊 Baik.. Saat ini memimpin cabang di industri telekomunikasi dan membawahi 4 divisi Sales, HR, Operation, dan New Roll Out ya pak. Baik.. itu tanggung jawab yg kompleks ya pak.. Sudah pasti keputusan bisnis harian, dan sinkronisasi data antar tim mungkin cukup menantang.
+                    </p>
+                    <p>
+                      Nah, di program ini bapak akan belajar AI diposisikan sebagai &apos;force multiplier&apos; utk kepemimpinan bpk, bukan pengganti intuisi bisnis 🚀 Program ini tanpa koding, fokus pada Decision Framing, perancangan Custom AI Assistant manajerial, hingga simulasi Executive Data Review. Di akhir sesi, Bpk bisa membawa tantangan riil di cabang kantor bapak jd Capstone Project. Sehingga selesai program sudah bawah playbook yg siap eksekusi, dan dapat ITB Certificate Course resmi.
+                    </p>
+                    <p>
+                      Berkenan aku bantu kirimkan rincian silabus lengkapnya dan atur sesi ngobrol santai 1:1 via konsultasi gratis Pak? Siapa tahu bisa jadi bekal berharga untuk akselerasi performa cabang bapak ✨&rdquo;
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
