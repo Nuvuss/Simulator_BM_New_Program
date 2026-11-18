@@ -104,7 +104,8 @@ export default function ExamPage() {
       showWelcomeModal ||
       Boolean(transitionOverlay) ||
       examState.phase === 'done' ||
-      examState.phase === 'booking-confirm'
+      examState.phase === 'booking-confirm' ||
+      examState.phase === 'greeting'
     )
       return;
 
@@ -165,6 +166,7 @@ export default function ExamPage() {
       !examState ||
       examState.phase === 'done' ||
       examState.phase === 'booking-confirm' ||
+      examState.phase === 'greeting' ||
       showWelcomeModal ||
       Boolean(transitionOverlay) ||
       !examState.sectionStartTime
@@ -330,7 +332,7 @@ export default function ExamPage() {
     );
   }
 
-  const currentLead = leads[examState.currentLeadIndex];
+  const currentLead = leads[examState.currentLeadIndex] || leads[0];
   const remaining = getRemainingTime(examState);
   const isSectionDone = examState.phase === 'done' || examState.phase === 'booking-confirm';
   const isTimerRunning = Boolean(
@@ -397,7 +399,7 @@ export default function ExamPage() {
 
             <div className="space-y-2 mb-5 text-left text-xs">
               <div className="bg-[#F0FDF4] border border-[#BBF7D0] rounded-xl p-2.5 text-green-800">
-                <p className="font-semibold mb-0.5">⏱ Waktu Sesi: 15 Menit</p>
+                <p className="font-semibold mb-0.5">⏱ Waktu Sesi: 20 Menit</p>
                 <p className="text-[11px] text-green-700 leading-tight">
                   Timer akan mulai berjalan saat Anda menekan tombol di bawah.
                 </p>
@@ -457,6 +459,7 @@ export default function ExamPage() {
             leadName={currentLead.name}
             leadProfile={currentLead.profile}
             remainingTime={remaining}
+            totalTime={currentLead.timeLimitSec || 1200}
             onTimeout={handleTimerExpired}
             sectionLabel={`${examState.currentLeadIndex + 1}/${leads.length}`}
             isTimerRunning={isTimerRunning}

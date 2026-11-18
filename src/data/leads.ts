@@ -44,7 +44,7 @@ export const leads: Lead[] = [
       'Oke kak, makasih penjelasannya! Aku mau deh ngobrol lebih lanjut sama AC-nya. Kapan ya kak bisa jadwalnya?',
     bookingConfirm:
       'Siap kak, sudah aku catat ya! Nanti AC RevoU yang hubungi aku ya. Makasih banyak kak! 🙏',
-    timeLimitSec: 900,
+    timeLimitSec: 1200,
   },
   {
     id: 'tomo',
@@ -89,7 +89,7 @@ export const leads: Lead[] = [
       'Baik Pak/Bu, penjelasannya cukup jelas. Kalau begitu saya jadwalkan konsultasi dengan AC terlebih dahulu. Kapan waktunya yang tersedia?',
     bookingConfirm:
       'Baik, terima kasih. Nanti dihubungi oleh tim AC ya. Terima kasih banyak atas bantuannya 🙏',
-    timeLimitSec: 900,
+    timeLimitSec: 1200,
   },
   {
     id: 'burhan',
@@ -134,7 +134,7 @@ export const leads: Lead[] = [
       'Oke kak mantap, jelas banget. Boleh deh aku atur sesi konsultasi bareng AC-nya dulu. Jadwalnya kapan aja ya kak?',
     bookingConfirm:
       'Oke kak, sudah dicatat. Ditunggu kontak dari tim AC ya. Thank you kak! 🙌',
-    timeLimitSec: 900,
+    timeLimitSec: 1200,
   },
   {
     id: 'ika',
@@ -179,6 +179,6 @@ export const leads: Lead[] = [
       'Oke deh kak, lumayan kebayang sekarang. Aku mau ikut sesi konsultasi sama AC-nya dulu. Kapan bisa dijadwalkan ya kak?',
     bookingConfirm:
       'Siap kak, aku tunggu ya. Makasih infonya kak! 😊',
-    timeLimitSec: 900,
+    timeLimitSec: 1200,
   },
 ];

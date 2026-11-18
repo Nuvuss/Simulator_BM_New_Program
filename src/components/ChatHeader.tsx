@@ -10,6 +10,7 @@ interface ChatHeaderProps {
   sectionLabel: string;
   isTimerRunning?: boolean;
   timerKey?: string;
+  totalTime?: number;
 }
 
 export function ChatHeader({
@@ -20,6 +21,7 @@ export function ChatHeader({
   sectionLabel,
   isTimerRunning = true,
   timerKey,
+  totalTime = 1200,
 }: ChatHeaderProps) {
   return (
     <div className="bg-[#075E54] text-white px-3.5 py-2.5 flex items-center justify-between shadow-md z-20 flex-shrink-0 select-none">
@@ -59,6 +61,7 @@ export function ChatHeader({
         <Timer
           key={timerKey}
           remainingTime={remainingTime}
+          totalTime={totalTime}
           onTimeout={onTimeout}
           isRunning={isTimerRunning}
         />

@@ -230,12 +230,22 @@ export function moveToNextLead(state: ExamState): ExamState {
 }
 
 export function getRemainingTime(state: ExamState): number {
-  if (!state.sectionStartTime) return leads[state.currentLeadIndex].timeLimitSec;
+  const lead = leads[state.currentLeadIndex] || leads[0];
+  const limit = lead?.timeLimitSec ?? 1200;
+  if (!state.sectionStartTime) return limit;
   const elapsed = (Date.now() - new Date(state.sectionStartTime).getTime()) / 1000;
-  const lead = leads[state.currentLeadIndex];
-  return Math.max(0, lead.timeLimitSec - elapsed);
+  if (isNaN(elapsed) || elapsed < 0) return limit;
+  return Math.max(0, limit - elapsed);
 }
 
 export function isTimedOut(state: ExamState): boolean {
+  if (
+    !state.sectionStartTime ||
+    state.phase === 'greeting' ||
+    state.phase === 'booking-confirm' ||
+    state.phase === 'done'
+  ) {
+    return false;
+  }
   return getRemainingTime(state) <= 0;
 }

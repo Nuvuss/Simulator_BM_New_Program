@@ -10,7 +10,7 @@ Selamat datang di proyek **Simulator BM (New Program)**! Panduan ini dirancang u
 - **Tech Stack:** Next.js (App Router), React, TypeScript, Tailwind CSS
 - **Integrasi Eksternal:** Google Sheets API v4 (Google APIs Client Library)
 - **Tujuan Sistem:**
-  Simulator interaktif berbasis tampilan chat WhatsApp untuk menguji calon **Booking Manager (Admission Executive)** RevoU. Kandidat menghadapi sesi simulasi bertahap dengan calon siswa (*lead*) yang memiliki karakteristik, program minat, dan latar belakang berbeda. Setiap sesi memiliki batas waktu (15 menit) dan aturan respon *single bubble*. Di akhir simulasi, seluruh transkrip chat beserta waktu respon dicatat dan dikirimkan otomatis ke Google Spreadsheet.
+  Simulator interaktif berbasis tampilan chat WhatsApp untuk menguji calon **Booking Manager (Admission Executive)** RevoU. Kandidat menghadapi sesi simulasi bertahap dengan calon siswa (*lead*) yang memiliki karakteristik, program minat, dan latar belakang berbeda. Setiap sesi memiliki batas waktu (20 menit) dan aturan respon *single bubble*. Di akhir simulasi, seluruh transkrip chat beserta waktu respon dicatat dan dikirimkan otomatis ke Google Spreadsheet.
 
 ---
 
@@ -54,11 +54,11 @@ Siklus ujian diatur melalui state `ExamState` di `src/lib/examEngine.ts`:
 1. **Pendaftaran (`/`)**: Kandidat memasukkan Nama & Email. Sistem membuat state baru via `createInitialState()`.
 2. **Instruksi (`/instructions`)**: Kandidat membaca peran, profil lead, dan aturan 1 bubble chat.
 3. **Simulasi Sesi per Lead (`/exam`)**:
-   - **Greeting Phase**: Pop-up konfirmasi muncul. Setelah kandidat klik "Mulai", timer 15 menit berjalan. Pesan pembuka BM (Message 1) dan balasan Lead (Message 2) ditampilkan secara bertahap dengan animasi mengetik.
+   - **Greeting Phase**: Pop-up konfirmasi muncul. Setelah kandidat klik "Mulai", timer 20 menit berjalan. Pesan pembuka BM (Message 1) dan balasan Lead (Message 2) ditampilkan secara bertahap dengan animasi mengetik.
    - **Questions & Objections Phase**: Kandidat membalas pesan. Engine mengirimkan 3 pertanyaan program (acak) dilanjutkan dengan 2 keberatan (acak) menggunakan algoritma Fisher-Yates (`src/lib/shuffle.ts`).
    - **Booking Request Phase**: Setelah ke-5 poin terjawab, lead mengajukan permintaan booking sesi konsultasi dengan AC.
    - **Booking Confirm Phase**: Kandidat mengonfirmasi waktu/jadwal, lead memberikan konfirmasi penutup. Sesi selesai (`booked`).
-   - **Timeout Handling**: Jika waktu 15 menit habis sebelum booking selesai, sesi ditutup otomatis dengan status `timeout`.
+   - **Timeout Handling**: Jika waktu 20 menit habis sebelum booking selesai, sesi ditutup otomatis dengan status `timeout`.
    - **Transisi Antar Sesi**: Sistem berpindah ke lead berikutnya dengan animasi transisi geser horizontal.
 4. **Pengiriman Hasil (`/thankyou`)**: Semua transkrip dari seluruh sesi digabungkan dan dikirim ke Google Sheets via `/api/submit`.
 

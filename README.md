@@ -1,6 +1,6 @@
 # 📱 Booking Manager Exam Simulator (RevoU Case Study)
 
-Aplikasi simulasi tes interaktif berbasis web untuk seleksi calon **Booking Manager (Admission Executive)**. Kandidat menjalani 3 sesi chat berwaktu (15 menit per sesi) dengan lead terskrip menggunakan antarmuka mirip WhatsApp. Seluruh transkrip percakapan akan otomatis disimpan ke Google Sheets setelah selesai.
+Aplikasi simulasi tes interaktif berbasis web untuk seleksi calon **Booking Manager (Admission Executive)**. Kandidat menjalani 4 sesi chat berwaktu (20 menit per sesi) dengan lead terskrip menggunakan antarmuka mirip WhatsApp. Seluruh transkrip percakapan akan otomatis disimpan ke Google Sheets setelah selesai.
 
 ---
 
@@ -12,7 +12,7 @@ Aplikasi simulasi tes interaktif berbasis web untuk seleksi calon **Booking Mana
   2. **Dimas (22)**: Fresh graduate (HI) – *Data Analytics* (pertanyaan tools Excel/SQL, durasi, penyaluran kerja, izin ortu, sertifikasi Google).
   3. **Shania (32)**: Upskiller / Marketing Manager – *Data-Driven Decision Making with ITB* (pertanyaan sertifikat ITB vs RevoU, online vs Bandung, materi teknis vs manajerial, kesibukan meeting, reimburse kantor).
 - **Acak Pertanyaan**: Urutan pertanyaan dan objeksi diacak secara dinamis untuk setiap kandidat menggunakan algoritma Fisher-Yates (pertanyaan program selalu muncul sebelum objeksi agar alur natural).
-- **Server/Client Timer**: Countdown 15 menit per sesi dengan penanda visual warna (kuning < 5 menit, merah berkedip < 1 menit), auto-close saat timeout, dan tahan refresh melalui `localStorage`.
+- **Server/Client Timer**: Countdown 20 menit per sesi dengan penanda visual warna (kuning < 5 menit, merah berkedip < 1 menit), auto-close saat timeout, dan tahan refresh melalui `localStorage`.
 - **Integrasi Google Sheets API**: Transkrip lengkap (nama kandidat, email, nama lead, nomor sesi, sender, pesan, timestamp WIB, waktu respon per pesan) otomatis dikirim ke Google Sheet saat ujian selesai.
 
 ---

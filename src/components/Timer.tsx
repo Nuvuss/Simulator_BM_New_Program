@@ -12,7 +12,7 @@ interface TimerProps {
 export function Timer({
   remainingTime,
   onTimeout,
-  totalTime = 900,
+  totalTime = 1200,
   isRunning = true,
 }: TimerProps) {
   const [timeLeft, setTimeLeft] = useState(Math.ceil(remainingTime));
@@ -25,9 +25,11 @@ export function Timer({
 
   useEffect(() => {
     const nextTime = Math.ceil(remainingTime);
-    setTimeLeft(nextTime);
-    if (nextTime > 0) {
-      hasExpiredRef.current = false;
+    if (!isNaN(nextTime)) {
+      setTimeLeft(nextTime);
+      if (nextTime > 0) {
+        hasExpiredRef.current = false;
+      }
     }
   }, [remainingTime]);
 
@@ -53,7 +55,7 @@ export function Timer({
   const seconds = timeLeft % 60;
   const display = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
-  // Mini circular progress ring calculations (15 minutes total default)
+  // Mini circular progress ring calculations (20 minutes total default)
   const radius = 6.5;
   const circumference = 2 * Math.PI * radius;
   const progress = Math.min(1, Math.max(0, timeLeft / totalTime));
