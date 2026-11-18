@@ -17,7 +17,7 @@ export const leads: Lead[] = [
       {
         seq: 1,
         type: 'question' as const,
-        text: 'Kelasnya jadwalnya kapan aja kak? Aku kerja shift di gym, kadang pagi kadang sore.',
+        text: 'Kelasnya jadwalnya kapan aja kak? Aku kerja shift di kantorku, kadang pagi kadang sore.',
       },
       {
         seq: 2,
