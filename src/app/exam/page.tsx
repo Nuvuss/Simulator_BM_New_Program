@@ -371,75 +371,79 @@ export default function ExamPage() {
             }`}
         >
           <div
-            className={`bg-white rounded-3xl p-5 sm:p-7 max-w-sm w-full text-center shadow-2xl border border-gray-100 max-h-[92dvh] overflow-y-auto ${isModalClosing ? 'animate-modal-slide-out-left' : 'animate-modal-slide-in-right'
+            className={`bg-white rounded-2xl p-5 sm:p-6 max-w-sm w-full shadow-2xl border border-gray-100 ${isModalClosing ? 'animate-modal-slide-out-left' : 'animate-modal-slide-in-right'
               }`}
           >
-            {/* Celebration Icon */}
-            <div className="w-14 h-14 mx-auto rounded-full bg-[#FFF3CD] border border-[#FFEEBA] flex items-center justify-center text-2xl mb-2.5 shadow-xs">
-              🎉
+            {/* Header: Session Badge & Title */}
+            <div className="text-center mb-4">
+              <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200/60 mb-2">
+                Sesi {examState.currentLeadIndex + 1} dari {leads.length}
+              </span>
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900">
+                Selamat Mengerjakan!
+              </h2>
+              <p className="text-xs text-gray-500 mt-0.5">
+                Kandidat: <span className="font-medium text-gray-700">{examState.candidateName}</span>
+              </p>
             </div>
 
-            {/* Badge */}
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-gray-800 bg-gray-100 mb-2">
-              <span>Sesi {examState.currentLeadIndex + 1} dari {leads.length}</span>
-              <span>•</span>
-              <span className="text-[#075E54]">{currentLead.name}</span>
-            </div>
-
-            {/* Pop Up Heading */}
-            <h2 className="text-xl sm:text-2xl font-extrabold text-gray-900 mb-2">
-              Selamat Mengerjakan!
-            </h2>
-
-            <p className="text-xs sm:text-sm text-gray-600 mb-3.5 leading-relaxed">
-              Halo <strong className="text-gray-900">{examState.candidateName}</strong>! Sesi chat bersama <strong className="text-[#075E54]">{currentLead.name}</strong> (<strong className="font-bold text-gray-900">{currentLead.profile}</strong>) yang tertarik dengan program <strong className="font-bold text-gray-900">{currentLead.program}</strong> akan segera dimulai.
-            </p>
-
-            <div className="space-y-2 mb-5 text-left text-xs">
-              <div className="bg-[#F0FDF4] border border-[#BBF7D0] rounded-xl p-2.5 text-green-800">
-                <p className="font-semibold mb-0.5">⏱ Waktu Sesi: 20 Menit</p>
-                <p className="text-[11px] text-green-700 leading-tight">
-                  Timer akan mulai berjalan saat Anda menekan tombol di bawah.
-                </p>
+            {/* Key-Value Block: Lead Info */}
+            <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-3.5 mb-3.5 space-y-2 text-xs">
+              <div className="flex items-start justify-between gap-2">
+                <span className="text-gray-500 shrink-0">Calon Siswa</span>
+                <span className="font-semibold text-gray-900 text-right">{currentLead.name}</span>
               </div>
-
-              <div className="bg-amber-50 border border-amber-200 rounded-xl p-2.5 text-amber-900">
-                <p className="font-bold text-amber-950 flex items-center gap-1 mb-1">
-                  <span>🚨</span> Ingat
-                </p>
-                <p className="text-[11px] text-amber-800 leading-relaxed">
-                  Kamu hanya bisa memberikan respon dengan <strong>1 bubble chat</strong>. Pastikan informasi, urgency, dan call to action yang ingin kamu sampaikan sudah tercantum langsung dalam 1 bubble chat sebelum kamu kirim.
-                </p>
+              <div className="flex items-start justify-between gap-2 border-t border-slate-200/60 pt-2">
+                <span className="text-gray-500 shrink-0">Profil / Peran</span>
+                <span className="font-medium text-gray-800 text-right">{currentLead.profile}</span>
+              </div>
+              <div className="flex items-start justify-between gap-2 border-t border-slate-200/60 pt-2">
+                <span className="text-gray-500 shrink-0">Program Minat</span>
+                <span className="font-medium text-[#075E54] text-right">{currentLead.program}</span>
               </div>
             </div>
 
+            {/* Two Short Rows: Time & Rule */}
+            <div className="space-y-2 mb-4 text-xs">
+              <div className="flex items-center gap-2.5 bg-emerald-50/70 border border-emerald-200/60 rounded-lg px-3 py-2 text-emerald-900">
+                <span className="text-sm">⏱</span>
+                <div className="flex-1 leading-tight text-[11px]">
+                  <span className="font-semibold">Alokasi Waktu:</span> 20 Menit (timer mulai saat klik tombol)
+                </div>
+              </div>
+
+              <div className="flex items-start gap-2.5 bg-amber-50/70 border border-amber-200/60 rounded-lg px-3 py-2 text-amber-900">
+                <span className="text-sm mt-0.5">🚨</span>
+                <div className="flex-1 leading-tight text-[11px]">
+                  <span className="font-semibold text-amber-950">Aturan 1 Bubble:</span> Gabungkan seluruh poin & penawaran dalam 1 kali kirim.
+                </div>
+              </div>
+            </div>
+
+            {/* Primary Action Button */}
             <button
               onClick={handleConfirmStart}
               disabled={isModalClosing}
-              className="w-full h-11 sm:h-12 bg-[#E7000B] hover:bg-[#C8000A] active:scale-[0.99] text-white font-bold px-6 rounded-xl transition-all shadow-md text-sm sm:text-base flex items-center justify-center gap-2 cursor-pointer disabled:opacity-80"
+              className="w-full h-11 bg-[#E7000B] hover:bg-[#C8000A] active:scale-[0.99] text-white font-bold px-6 rounded-xl transition-all shadow-md text-sm flex items-center justify-center gap-2 cursor-pointer disabled:opacity-80"
             >
               <span>Mulai Chat Sekarang</span>
-              <span className="text-lg">→</span>
+              <span className="text-base">→</span>
             </button>
           </div>
         </div>
       )}
 
-      {/* Mobile Portrait Phone Frame */}
-      <div className="w-full sm:max-w-[420px] h-dvh sm:h-[94vh] sm:max-h-[860px] flex flex-col bg-[#ECE5DD] sm:rounded-[32px] sm:shadow-2xl overflow-hidden sm:border-[6px] sm:border-gray-800 relative">
+      {/* Clean Simulator Container (No fake phone hardware) */}
+      <div className="w-full sm:max-w-[420px] h-dvh sm:h-[94vh] sm:max-h-[860px] flex flex-col bg-[#ECE5DD] sm:rounded-2xl sm:shadow-xl overflow-hidden sm:border sm:border-gray-200/90 relative pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]">
 
-        {/* Smartphone top speaker & camera notch (desktop only) */}
-        <div className="hidden sm:flex items-center justify-between px-6 pt-2 pb-1.5 bg-[#075E54] text-white text-[11px] font-medium z-30 select-none">
-          <span>09:41</span>
-          <div className="w-20 h-3.5 bg-gray-900 rounded-full mx-auto" />
-          <div className="flex items-center gap-1.5">
-            <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 21l3.53-.93C9.37 20.66 10.65 21 12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9z" />
-            </svg>
-            <div className="w-4 h-2.5 border border-white rounded-xs p-0.5 flex items-center">
-              <div className="w-full h-full bg-white rounded-2xs" />
-            </div>
-          </div>
+        {/* Real Assessment Metadata Bar */}
+        <div className="bg-[#054C44] text-white/90 px-3.5 py-1 text-[11px] flex items-center justify-between border-b border-black/10 select-none flex-shrink-0">
+          <span className="truncate text-emerald-100">
+            Kandidat: <strong className="text-white font-medium">{examState.candidateName}</strong>
+          </span>
+          <span className="text-[11px] font-semibold text-emerald-200 flex-shrink-0 ml-2">
+            Sesi {examState.currentLeadIndex + 1} dari {leads.length}
+          </span>
         </div>
 
         {/* Active Chat Screen with Lateral Horizontal Slide Transition */}
@@ -508,11 +512,6 @@ export default function ExamPage() {
                 : 'Ketik pesan...'
             }
           />
-        </div>
-
-        {/* Bottom home bar indicator for mobile portrait look */}
-        <div className="hidden sm:flex justify-center pb-1 pt-1 bg-[#F0F0F0] select-none">
-          <div className="w-28 h-1 bg-gray-400 rounded-full" />
         </div>
       </div>
     </div>
